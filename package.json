@@ -18,6 +18,8 @@
   "homepage": "https://github.com/kjirou/ink-playground#readme",
   "private": true,
   "dependencies": {
+    "generate-maze-by-clustering": "0.0.4",
+    "icepick": "^2.1.1",
     "ink": "^0.3.0",
     "react": "^15.6.1"
   }
