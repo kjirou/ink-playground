@@ -1,0 +1,25 @@
+{
+  "name": "ink-playground",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjirou/ink-playground.git"
+  },
+  "author": "kjirou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjirou/ink-playground/issues"
+  },
+  "homepage": "https://github.com/kjirou/ink-playground#readme",
+  "private": true,
+  "dependencies": {
+    "babel": "^6.23.0",
+    "ink": "^0.3.0",
+    "react": "^15.6.1"
+  }
+}
