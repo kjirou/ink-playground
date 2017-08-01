@@ -27,7 +27,7 @@ const STEP_RESULT_TYPES = {
   FORWARD: 'FORWARD',
 };
 
-const MAIN_LOOP_INTERVAL = 200;
+const MAIN_LOOP_INTERVAL = 100;
 
 
 const createSquareMatrixState = () => {
@@ -212,6 +212,39 @@ class App extends Component {
           THING_TYPES.YELLOW_BATTLER
         );
       } else {
+        squareMatrix = icepick.assocIn(
+          squareMatrix,
+          [yellowBattlerSquare.rowIndex, yellowBattlerSquare.columnIndex, 'floorColorType'],
+          FLOOR_COLOR_TYPES.YELLOW
+        );
+
+        const stepResult = decideNextStep(THING_TYPES.YELLOW_BATTLER, squareMatrix, yellowMovementHistory);
+
+        if (
+          stepResult.stepResultType === STEP_RESULT_TYPES.FORWARD ||
+          stepResult.stepResultType === STEP_RESULT_TYPES.BACKWARD
+        ) {
+          squareMatrix = icepick.assocIn(
+            squareMatrix,
+            [yellowBattlerSquare.rowIndex, yellowBattlerSquare.columnIndex, 'thingType'],
+            THING_TYPES.NONE
+          );
+          squareMatrix = icepick.assocIn(
+            squareMatrix,
+            [stepResult.nextSquare.rowIndex, stepResult.nextSquare.columnIndex, 'thingType'],
+            THING_TYPES.YELLOW_BATTLER
+          );
+          if (stepResult.stepResultType === STEP_RESULT_TYPES.FORWARD) {
+            yellowMovementHistory = yellowMovementHistory.concat({
+              rowIndex: yellowBattlerSquare.rowIndex,
+              columnIndex: yellowBattlerSquare.columnIndex,
+            });
+          } else if (stepResult.stepResultType === STEP_RESULT_TYPES.BACKWARD) {
+            yellowMovementHistory = yellowMovementHistory.slice(0, yellowMovementHistory.length - 1);
+          }
+        } else {
+          // TODO: Finish game
+        }
       }
 
       this.setState({
